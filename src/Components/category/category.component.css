@@ -1,0 +1,7 @@
+/* Medium devices (tablets, laptops) */
+@media only screen and (max-width: 960px) {
+  select {
+    width: 80% !important;
+    margin: auto !important;
+  }
+}

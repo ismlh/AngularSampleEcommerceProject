@@ -1,0 +1,65 @@
+<div class="shadow p-3">
+
+    <div class="d-flex justify-content-between ">
+        <div>
+            <label for="SD" class="mx-2 lead">Start Date</label>
+            <input type="date" [(ngModel)]="startDate" name="startDate" id="SD">
+        </div>
+        <div>
+            <label for="ED" class="mx-2 lead">End Date</label>
+            <input type="date" name="endDate" [(ngModel)]="endDate" id="ED">
+        </div>
+        <button class="btn btn-outline-info" (click)="Sort()">Apply</button>
+    </div>
+
+    <table class="table text-center table-bordered mt-4 w-100">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of orders ;let idx=index">
+                <th scope="col">{{order.date | date:'fullDate' }}</th>
+                <th scope="col">{{order.products.length}}</th>
+                <th scope="col"> <button class="btn btn-outline-info form-control" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal" (click)="viewOrderDetalis(order.id)">View</button></th>
+                <th scope="col"><button class="btn btn-outline-danger form-control"
+                        (click)="deleteOrder(order.id)">Delete</button></th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h1 class="fw-bolder">User : {{order.id}}</h1>
+                <h3 class="fw-bolder">Order Date : {{order.date | date}}</h3>
+                <table class="table text-center table-bordered mt-4 w-100">
+                    <thead>
+                        <tr>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let prd of order.products">
+                            <th scope="col">{{prd.productId}}</th>
+                            <th scope="col">{{prd.quantity}}</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-info form-control" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

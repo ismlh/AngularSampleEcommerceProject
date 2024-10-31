@@ -1,0 +1,58 @@
+<div class="cart shadow p-3 ">
+
+    <h1 class="text-danger fw-bolder">Shopping Cart</h1>
+    <div class="d-flex justify-content-between p-3">
+        <p class="lead">You have <span class="text-success">{{length}}</span> Items In Your Cart</p>
+        <p class="btn btn-outline-danger" (click)="clearShoppingCart()" *ngIf="taotal!=0">Clear Shopping Cart</p>
+    </div>
+
+    <table class="table text-center table-bordered mt-4 w-100">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col" class="w-25">Quantity</th>
+                <th scope="col">Total</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cartPrd of cartProducts ;let idx=index">
+                <th scope="col"><img [src]="cartPrd.product.image" style="width: 50px; height: 30px;" alt=""></th>
+                <th scope="col">{{cartPrd.product.title}}</th>
+                <th scope="col">{{cartPrd.product.price | currency }}</th>
+                <th scope="col" class="d-flex">
+                    <button class="btn btn-outline-dark" (click)="increaseCount(cartPrd.product.id)">+</button>
+                    <input type="number" class="form-control text-center mx-1" disabled [(ngModel)]="cartPrd.count">
+                    <button class="btn btn-outline-dark" (click)="decreaseCount(cartPrd.product.id)">-</button>
+                </th>
+
+                <th scope="col">{{cartPrd.product.price * cartPrd.count|currency}}</th>
+                <th scope="col" class="p-1"><button class="btn btn-outline-danger"
+                        (click)="deletePrdFromCart(cartPrd.product.id)">Delete</button></th>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2 class="text-end" *ngIf="taotal!=0">Total Price : {{taotal | currency}}</h2>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+        class=" form-control btn btn-outline-info b-4 mt-2 border-3">Order Now</button>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h2 class="fw-bolder text-center"> Order Completed Sucffuly</h2>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info form-control"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

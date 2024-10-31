@@ -1,0 +1,42 @@
+<main class="cd__main">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="main-img">
+                    <img class="img-fluid" [src]="product.image"
+                        alt="Produc">
+                </div>
+            </div>
+            <div class="col-lg-7  p-md-4 mt-4 mt-md-0">
+                <div class="main-description px-2">
+                    <div class="category text-bold fw-bolder">
+                        Category: {{product.category}}
+                    </div>
+                    <div class="product-title  my-3">
+                        {{product.title}}
+                    </div>
+                    <div class="price-area my-4">
+                        <p class="new-price  mb-1">${{product.price}}</p>
+                    </div>
+                    <div class="buttons d-flex my-5">
+                        <div class="block">
+                            <button class="shadow btn  btn-outline-info p-2">Add to cart</button>
+                        </div>
+                        <div class="block quantity">
+                            <input type="number" class="form-control text-center" id="cart_quantity" value="1" min="0" max="5"
+                                placeholder="Enter quantity" name="quantity">
+                        </div>
+                    </div>
+                </div>
+                <div class="product-details my-4">
+                    <p class="details-title text-color mb-1">product Details</p>
+                    <p class="description lead">{{product.description}} </p>
+                </div>
+                <div class="product-details my-4">
+                    <p class="details-title text-color mb-1">product Rating</p>
+                    <p class="description lead">{{product.rating.rate}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

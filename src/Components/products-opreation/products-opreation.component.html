@@ -1,0 +1,74 @@
+<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+    class=" form-control btn btn-outline-info b-4 mt-2 border-3">Add New Product</button>
+<div class="cart shadow p-3 ">
+    <table class="table text-center table-bordered mt-4 w-100">
+        <thead>
+            <tr>
+                <th scope="col">Image</th>
+                <th scope="col">Name</th>
+                <th scope="col">Price</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let prd of products ;let idx=index">
+                <th scope="col"><img [src]="prd.image" style="width: 50px; height: 30px;" alt=""></th>
+                <th scope="col">{{prd.title}}</th>
+                <th scope="col">{{prd.price | currency }}</th>
+                <th scope="col">{{prd.category}}</th>
+                <th scope="col">{{prd.description | truncate:30}}</th>
+                <th scope="col" class="p-1"><button class="btn btn-outline-info">Update</button></th>
+                <th scope="col" class="p-1"><button class="btn btn-outline-danger">Delete</button></th>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Product</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <form #prdForm="ngForm" (ngSubmit)="addProduct()">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <label for="title" >Title</label>
+                                    <input type="text" id="title" required [(ngModel)]="product.title" name="title" class="form-control">
+                                </div>
+                                <div class="col-lg-6">
+                                    <label for="price">Price</label>
+                                    <input type="number" required name="price" id="price" [(ngModel)]="product.price" class="form-control">
+                                </div>
+                                <div class="col-12">
+                                    <app-category  (categorEvent)="catNameData($event)"></app-category>
+                                </div>
+                                <div class="col-lg-5 shadow">
+                                    <label for="image"></label>
+                                    <img [src]="selectedData"  id="image" class="d-block" alt="" style="width: 130px;">
+                                    <input type="file" id="image" required accept="image/*"  (change)="onFileSelected($event)">
+                                </div>
+                                <div class="col-lg-6 offset-lg-1 shadow">
+                                    <label for="description " class="d-block">Description</label>
+                                    <textarea name="description" required id="description" placeholder="Type here..." [(ngModel)]="product.description"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" [disabled]="!prdForm.valid" data-bs-dismiss="modal" class="btn btn-outline-info form-control mt-2">Add</button>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-info form-control"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>

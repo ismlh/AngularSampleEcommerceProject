@@ -1,0 +1,28 @@
+
+<app-category (categorEvent)="catNameData($event)"></app-category>
+
+<div class="row justify-content-center">
+    <ng-container *ngFor="let prd of products">
+        <div class="col-md-6 col-lg-4 col-xl-3 col-sm-12" *ngIf="(reciviedCatName === 'all') || (prd.category === reciviedCatName)">  
+            <div class="item">
+                <img [src]="prd.image"  (click)="goToProductDetails(prd.id)" alt="">
+                <div class="body">
+                    <h4 class="fw-bolder" >{{prd.title}}</h4>
+                    <p class="lead"> Category : {{prd?.category}}</p>
+                    <p class="lead my-2" style="height: 100px;">{{prd.description}}</p>
+                    <div class="w-75 m-auto my- d-flex " *ngIf="selectedProduct && selectedProduct.id === prd.id">
+                        <input type="number" class="form-control " placeholder="Quantity of prouct" [(ngModel)]="amount">
+                        <button class="btn btn-outline-success ms-1" (click)="addToCart(prd)">Add</button>
+                    </div>
+                    <div class="px-3 mb-2 d-flex justify-content-between align-items-center">
+                        <button class="btn btn-success" *ngIf="!selectedProduct || selectedProduct.id !== prd.id" (click)="addToCartButton(prd)">Add To Cart</button>
+                        <span>{{prd.price}} L.E</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </ng-container>
+</div>
+

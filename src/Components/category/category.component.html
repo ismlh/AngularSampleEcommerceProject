@@ -1,0 +1,7 @@
+<div class="mb-3">
+    <label for="cat" id="catLabel" class="form-label">Category : </label>
+    <select class="form-select form-select-lg w-50 mx-auto" [(ngModel)]="selctedCatName" (change)="catName()" name="" id="cat">
+        <option  value="all" selected>All</option>
+        <option [value]="category" *ngFor="let category of categories;let idx=index">{{category}}</option>
+    </select>
+</div>
