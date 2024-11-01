@@ -1,1 +1,0 @@
-import{N as o}from"./chunk-N3C7RMIE.js";var a=class t{constructor(){}getAllCarts(){let r=localStorage.getItem("cart");return r?JSON.parse(r):[]}static \u0275fac=function(c){return new(c||t)};static \u0275prov=o({token:t,factory:t.\u0275fac,providedIn:"root"})};export{a};
